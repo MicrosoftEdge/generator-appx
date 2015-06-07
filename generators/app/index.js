@@ -4,13 +4,19 @@ module.exports = generators.Base.extend({
     var that = this;
     var done = this.async();
 
-    this.prompt({
+    this.prompt([{
       type: 'confirm',
       name: 'win10',
       message: 'Developing on Windows 10?',
       default: true
-    }, function (answers) {
+    }, {
+      type: 'confirm',
+      name: 'deps',
+      message: 'Automatically install dependencies?',
+      default: true
+    }], function (answers) {
       that._win10 = answers.win10;
+      that._deps = answers.deps;
       done();
     });
   },
@@ -48,6 +54,8 @@ module.exports = generators.Base.extend({
   },
 
   installDependencies: function() {
-    this.npmInstall();
+    if (this._deps) {
+      this.npmInstall();
+    }
   }
 });
