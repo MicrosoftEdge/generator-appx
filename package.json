@@ -1,0 +1,19 @@
+{
+  "name": "generator-appx",
+  "version": "0.0.1",
+  "description": "Windows 10 App Build System",
+  "files": [
+    "generators"
+  ],
+  "keywords": [
+    "yeoman-generator"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/alxlu/generator-appx.git"
+  },
+  "dependencies": {
+    "gulp-appx": "git://github.com/alxlu/gulp-appx",
+    "yeoman-generator": "^0.20.1"
+  }
+}

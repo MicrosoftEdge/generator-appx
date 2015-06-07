@@ -1,0 +1,53 @@
+var generators = require('yeoman-generator');
+module.exports = generators.Base.extend({
+  promptProjectType: function() {
+    var that = this;
+    var done = this.async();
+
+    this.prompt({
+      type: 'confirm',
+      name: 'win10',
+      message: 'Developing on Windows 10?',
+      default: true
+    }, function (answers) {
+      that._win10 = answers.win10;
+      done();
+    });
+  },
+
+  promptProjectInfo: function() {
+    var that = this;
+    var done = this.async();
+
+    this.prompt([{
+      type: 'input',
+      name: 'name',
+      message: 'Project name?',
+      default: 'Contoso App'
+    }, {
+      type: 'input',
+      name: 'author',
+      message: 'Author name?',
+      default: ''
+    }], function (answers) {
+      that._name = answers.name;
+      that._author = answers.author;
+      done();
+    });
+  },
+
+  copyTemplate: function() {
+    var that = this;
+    var gulpDir = '../../../node_modules/gulp-appx';
+    if (this._win10) {
+      this.fs.copy(this.templatePath(gulpDir) + '/**/{*,.*}', this.destinationPath(), {dot: true});
+    } else {
+      this.fs.copy(this.templatePath(gulpDir) + '/{,*,.*,gulpfile.js/*,gulpfile.js/tasks/**/*,gulpfile.js/util/**/*,src/**/*,src/**/.*}', this.destinationPath() + '/', {dot: true});
+    }
+    this.fs.move(this.destinationPath('.npmignore'), this.destinationPath('.gitignore'));
+  },
+
+  installDependencies: function() {
+    this.npmInstall();
+  }
+});
