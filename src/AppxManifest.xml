@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Package
+  xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+  xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
+  xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+  IgnorableNamespaces="uap mp">
+
+  <Identity
+    Name="122f1d07-66a9-427c-9fb4-80fa75b5d81a"
+    Version="1.0.0.0"
+    Publisher="CN=Demo" />
+
+  <mp:PhoneIdentity PhoneProductId="122f1d07-66a9-427c-9fb4-80fa75b5d81a" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+
+  <Properties>
+    <DisplayName>DemoApp</DisplayName>
+    <PublisherDisplayName>Demo User</PublisherDisplayName>
+    <Logo>images\storelogo.png</Logo>
+  </Properties>
+
+  <Dependencies>
+    <TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.10069.0" MaxVersionTested="10.0.10069.0" />
+  </Dependencies>
+
+  <Resources>
+    <Resource Language="en-us" />
+  </Resources>
+
+  <Applications>
+    <Application
+      Id="App"
+      StartPage="http://localhost:3000">
+
+      <uap:VisualElements
+        DisplayName="DemoApp"
+        Description="DemoApp"
+        BackgroundColor="#FFFFFF"
+        Square150x150Logo="images\Logo.png"
+        Square44x44Logo="images\SmallLogo.png">
+        
+        <uap:SplashScreen Image="images\splashscreen.png" />
+      </uap:VisualElements>
+      <!-- Describe where the app ends and the internet begins -->
+      <uap:ApplicationContentUriRules>
+        <uap:Rule Type="include" Match="http://localhost:3000" WindowsRuntimeAccess="all"/>
+      </uap:ApplicationContentUriRules>
+    </Application>
+  </Applications>
+  <!-- List different application capabilities -->
+  <Capabilities>
+    <Capability Name="internetClient" />
+  </Capabilities>
+</Package>

@@ -1,0 +1,57 @@
+{
+  "name": "gulp-appx",
+  "version": "0.0.2",
+  "description": "Gulp build system for Windows 10 Apps",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "browser": {
+    "plugin": "./src/javascript/vendor/plugin.js"
+  },
+  "browserify": {
+    "transform": [
+      "browserify-shim"
+    ]
+  },
+  "browserify-shim": {},
+  "devDependencies": {
+    "browser-sync": "^2.7.6",
+    "browserify": "^8.0.2",
+    "browserify-shim": "^3.8.2",
+    "del": "^1.1.1",
+    "gulp": "^3.8.7",
+    "gulp-autoprefixer": "^2.3.1",
+    "gulp-changed": "^0.4.1",
+    "gulp-filesize": "0.0.6",
+    "gulp-gh-pages": "^0.5.1",
+    "gulp-imagemin": "^0.6.2",
+    "gulp-jshint": "^1.9.0",
+    "gulp-minify-css": "^0.3.11",
+    "gulp-notify": "^1.4.2",
+    "gulp-run": "^1.6.8",
+    "gulp-sass": "^1.1.0",
+    "gulp-sourcemaps": "^1.2.8",
+    "gulp-swig": "^0.7.4",
+    "gulp-uglify": "^1.0.2",
+    "gulp-util": "^3.0.0",
+    "gulp-watch": "^4.2.4",
+    "jshint-stylish": "^1.0.0",
+    "lodash": "^3.9.3",
+    "ngrok": "^0.1.99",
+    "pretty-hrtime": "~0.2.1",
+    "require-dir": "^0.1.0",
+    "vinyl-source-stream": "~0.1.1",
+    "watchify": "^2.2.1",
+    "xml2js": "^0.4.9",
+    "yargs": "^3.10.0"
+  },
+  "dependencies": {},
+  "gitHead": "af3366653e1714562f94c3ca65817cf694daf6e6",
+  "readme": "Build system for Windows 10 App Demos\n============\n\nStarter Gulp + Browserify project + Appx Tools\n\nIncludes the following tools, tasks, and workflows:\n\n- [Browserify](http://browserify.org/) (with [browserify-shim](https://github.com/thlorenz/browserify-shim))\n- Windows 10 Hosted App Build System\n- [Watchify](https://github.com/substack/watchify) (caching version of browserify for super fast rebuilds)\n- [SASS](http://sass-lang.com/) (super fast libsass with [source maps](https://github.com/sindresorhus/gulp-ruby-sass#sourcemap), and [autoprefixer](https://github.com/sindresorhus/gulp-autoprefixer))\n- [BrowserSync](http://browsersync.io) for live reloading and a static server\n- [Image optimization](https://www.npmjs.com/package/gulp-imagemin)\n- Error handling in the console [and in Notification Center](https://github.com/mikaelbr/gulp-notify)\n- Shimming non common-js vendor code with other dependencies (like a jQuery plugin)\n- Multiple bundles with shared dependencies\n- Separate compression task for production builds\n\n### Install npm dependencies\n```\nnpm install\n```\n\nThis runs through all dependencies listed in `package.json` and downloads them to a `node_modules` folder in your project directory.\n\n### The `gulp` command\nYou can  install gulp globally with `npm install -g gulp`, which will add the gulp script to your global bin folder.\n\nTo use the version that's specified in your project's package.json.  You can simply alias `./node_modules/.bin/gulp` to `gulp`. Open up `~/.zshrc` or `~./bashrc` and add the following line:\n\n```\nalias gulp='node_modules/.bin/gulp'\n```\nNow, running `gulp` in the project directory will use the version specified and installed from the `package.json` file.\n\n### Run gulp\n\n```\ngulp\n```\n\nThis will run the `default` gulp task defined in `gulp/tasks/default.js`, which has the following task dependencies: `['sass', 'images', 'markup', 'watch']`\n- The `sass` task compiles your css files.\n- `images` moves images copies images from a source folder, performs optimizations, the outputs them into the build folder\n- `markup` doesn't do anything but copy an html file over from src to build, but here is where you could do additional templating work.\n- `watch` has `watchify` as a dependency, which will run the browserifyTask with a `devMode` flag that enables sourcemaps and watchify, a browserify add-on that enables caching for super fast recompiling. The task itself starts watching source files and will re-run the appropriate tasks when those files change.\n\n#### gulp appx\nThis command will install your App as a hosted app pointing to `http://localhost:3000` and then launch it.\n\n#### gulp production\n\nThere is also a `production` task you can run with `gulp production`, which will re-build optimized, compressed css and js files to the build folder, as well as output their file sizes to the console. It's a shortcut for running the following tasks: `['images', 'minifyCss', 'uglifyJs']`.\n\n### Configuration\nAll paths and plugin settings have been abstracted into a centralized config object in `gulp/config.js`. Adapt the paths and settings to the structure and needs of your project.\n",
+  "readmeFilename": "README.md",
+  "_id": "gulp-appx@0.0.2",
+  "_shasum": "20bdf49c3f089e0be8cf315d482bed4b84b4d92c",
+  "_from": "git://github.com/alxlu/gulp-appx.git",
+  "_resolved": "git://github.com/alxlu/gulp-appx.git#af3366653e1714562f94c3ca65817cf694daf6e6"
+}

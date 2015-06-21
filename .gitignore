@@ -1,6 +1,6 @@
 .DS_Store
 .sass-cache
-build
+dist
 Desktop.ini
 node_modules
 *.swp
