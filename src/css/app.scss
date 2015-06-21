@@ -1,0 +1,84 @@
+@import 'normalize.scss';
+
+.hero-wrapper {
+  position: relative;
+  height: 600px;
+}
+
+#content {
+  text-align: center;
+  width: 800px;
+  margin: auto;
+}
+
+h2 {
+  margin-top: 70px;
+  margin-bottom: 30px;
+  font-family: 'Didot', 'Bodoni MT', serif;
+  font-weight: 200;
+  font-size: 200%;
+}
+
+p {
+  font-family: 'Helvetica', sans-serif;
+  line-height: 1.5em;
+  width: 450px;
+  text-align: left;
+  margin: auto;
+  margin-top: 30px;
+}
+
+#hero {
+  z-index: -1;
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 0;
+  overflow: hidden;
+  //min-width: 1045px;
+  height: 100%;
+}
+
+#yoappx-vid {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -100;
+  transform: translateX(-50%) translateY(-50%);
+  background: url(../img/background.png) no-repeat;
+  background-size: cover;
+}
+
+#title {
+  text-align: center;
+  color: white;
+  font-family: 'Didot', 'Bodoni MT', serif;
+  margin: 0;
+  font-size: 1000%;
+  line-height: 1;
+}
+
+h3 {
+  color: white;
+  font-family: 'Helvetica', sans-serif;
+  margin-top: 0;
+  font-size: 150%;
+  font-weight: 200;
+}
+
+.va-middle {
+  vertical-align: middle;
+  display: table-cell;
+  text-align: center;
+}
+
+.va-container {
+  width: 100%;
+  height: 100%;
+  display: table;
+  position: relative;
+}
