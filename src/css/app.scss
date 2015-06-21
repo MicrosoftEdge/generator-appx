@@ -90,7 +90,7 @@ h3 {
 }
 
 .btn {
-  background: rgba(255,255,255,0.3);
+  background: rgba(0,0,0,0.3);
   border-style: none;
   padding: 9px 27px;
   font-size: 16px;
@@ -109,6 +109,6 @@ h3 {
   text-decoration: none;
   font-weight: 200;
   &:hover {
-    background-color: rgba(0,0,0,0.35);
+    background-color: rgba(255,255,255,0.3);
   }
 }
