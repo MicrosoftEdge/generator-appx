@@ -7,7 +7,7 @@
     "url": ""
   },
   "browser": {
-    "plugin": "./src/javascript/vendor/plugin.js"
+    "WOW": "./src/bundles/vendor/wow.js"
   },
   "browserify": {
     "transform": [

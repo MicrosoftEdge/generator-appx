@@ -1,4 +1,7 @@
-@import 'normalize.scss';
+@import 'variables';
+@import 'normalize';
+@import 'animate';
+@import 'wells';
 
 .hero-wrapper {
   position: relative;
@@ -14,18 +17,21 @@
 h2 {
   margin-top: 70px;
   margin-bottom: 30px;
-  font-family: 'Didot', 'Bodoni MT', serif;
+  font-family: $font-family-serif;
   font-weight: 200;
   font-size: 200%;
 }
 
 p {
-  font-family: 'Helvetica', sans-serif;
+  font-family: $font-family-sans-serif;
   line-height: 1.5em;
+  margin-top: 30px;
+}
+
+.description {
+  margin: auto;
   width: 450px;
   text-align: left;
-  margin: auto;
-  margin-top: 30px;
 }
 
 #hero {
@@ -56,7 +62,7 @@ p {
 #title {
   text-align: center;
   color: white;
-  font-family: 'Didot', 'Bodoni MT', serif;
+  font-family: $font-family-serif;
   margin: 0;
   font-size: 1000%;
   line-height: 1;
@@ -64,7 +70,7 @@ p {
 
 h3 {
   color: white;
-  font-family: 'Helvetica', sans-serif;
+  font-family: $font-family-sans-serif;
   margin-top: 0;
   font-size: 150%;
   font-weight: 200;
@@ -81,4 +87,28 @@ h3 {
   height: 100%;
   display: table;
   position: relative;
+}
+
+.btn {
+  background: rgba(255,255,255,0.3);
+  border-style: none;
+  padding: 9px 27px;
+  font-size: 16px;
+  display: inline-block;
+  margin-bottom: 0;
+  border-radius: 2px;
+  border: 1px solid;
+  text-align: center;
+  vertical-align: middle;
+  font-weight: bold;
+  line-height: 1.43;
+  user-select: none;
+  white-space: nowrap;
+  cursor: pointer;
+  color: white;
+  text-decoration: none;
+  font-weight: 200;
+  &:hover {
+    background-color: rgba(0,0,0,0.35);
+  }
 }
