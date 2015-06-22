@@ -1,3 +1,11 @@
+@font-face {
+  font-family: 'Didot';
+  src: url('fonts/Didot.eot');
+  src: local('☺'), url('fonts/Didot.ttf') format('truetype'), url('fonts/Didot.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
 @import 'variables';
 @import 'normalize';
 @import 'animate';
