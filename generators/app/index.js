@@ -1,4 +1,5 @@
 var generators = require('yeoman-generator');
+var path = require('path');
 module.exports = generators.Base.extend({
   promptProjectType: function() {
     var that = this;
@@ -44,7 +45,7 @@ module.exports = generators.Base.extend({
 
   copyTemplate: function() {
     var that = this;
-    var gulpDir = '../../../node_modules/gulp-appx';
+    var gulpDir = path.join(require.resolve('gulp-appx/package.json'), '../');
     if (this._win10) {
       this.fs.copy(this.templatePath(gulpDir) + '/**/{*,.*}', this.destinationPath(), {dot: true});
     } else {
