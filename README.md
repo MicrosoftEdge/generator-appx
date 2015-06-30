@@ -1,7 +1,7 @@
 # AppX Generator
 A [Yeoman](http://yeoman.io) generator for building websites and Hosted Apps for Windows 10.
 
-![yoappx](http://alxlu.github.io/generator-appx/img/yoappx.gif)
+![yoappx](http://microsoftedge.github.io/generator-appx/img/yoappx.gif)
 
 For the full documentation, please refer to the [wiki](https://github.com/alxlu/generator-appx/wiki)
 
