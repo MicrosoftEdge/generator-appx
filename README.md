@@ -11,7 +11,7 @@ For the full documentation, please refer to the [wiki](https://github.com/alxlu/
 
 ### Install Gulp, Yeoman, and the template
 ```sh
-npm i -g gulp yo generator appx
+npm i -g gulp yo generator-appx
 ```
 
 ### Scaffold out the project
