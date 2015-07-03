@@ -54,9 +54,9 @@ module.exports = generators.Base.extend({
     this.fs.move(this.destinationPath('.npmignore'), this.destinationPath('.gitignore'));
   },
 
-  installDependencies: function() {
+  install: function() {
     if (this._deps) {
-      this.npmInstall();
+      this.installDependencies({bower: false});
     }
   }
 });
