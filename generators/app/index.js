@@ -44,7 +44,6 @@ module.exports = generators.Base.extend({
   },
 
   copyTemplate: function() {
-    var that = this;
     var gulpDir = path.join(require.resolve('gulp-appx/package.json'), '../');
     if (this._win10) {
       this.fs.copy(this.templatePath(gulpDir) + '/**/{*,.*}', this.destinationPath(), {dot: true});
