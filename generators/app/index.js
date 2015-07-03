@@ -35,6 +35,7 @@ module.exports = generators.Base.extend({
       type: 'input',
       name: 'author',
       message: 'Author name?',
+      store: true,
       default: ''
     }], function (answers) {
       that._name = answers.name;
