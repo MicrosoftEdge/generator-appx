@@ -3,11 +3,11 @@ A [Yeoman](http://yeoman.io) generator for building websites and Hosted Apps for
 
 ![yoappx](http://microsoftedge.github.io/generator-appx/img/yoappx.gif)
 
-For the full documentation, please refer to the [wiki](https://github.com/alxlu/generator-appx/wiki)
+For the full documentation, please refer to the [wiki](https://github.com/MicrosoftEdge/generator-appx/wiki)
 
 ## Quick Start
 
-**Note:** The Quick Start assumes you already have some experience with the command line as well as Git, NodeJS, and NPM installed. Otherwise, you can check out the [Getting Started](https://github.com/alxlu/generator-appx/wiki/Getting-Started) section in the wiki.
+**Note:** The Quick Start assumes you already have some experience with the command line as well as Git, NodeJS, and NPM installed. Otherwise, you can check out the [Getting Started](https://github.com/MicrosoftEdge/generator-appx/wiki/Getting-Started) section in the wiki.
 
 ### Install Gulp, Yeoman, and the template
 ```sh
@@ -18,7 +18,7 @@ npm i -g gulp yo generator-appx
 ```sh
 yo appx
 ```
-To easily speed this process up significantly check out the [Tips](https://github.com/alxlu/generator-appx/wiki/Tips/#modules) section in the sidebar.
+To easily speed this process up significantly check out the [Tips](https://github.com/MicrosoftEdge/generator-appx/wiki/Tips/#modules) section in the sidebar.
 
 ### Run Gulp
 ```
