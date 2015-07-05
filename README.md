@@ -10,19 +10,23 @@ For the full documentation, please refer to the [wiki](https://github.com/Micros
 **Note:** The Quick Start assumes you already have some experience with the command line as well as Git, NodeJS, and NPM installed. Otherwise, you can check out the [Getting Started](https://github.com/MicrosoftEdge/generator-appx/wiki/Getting-Started) section in the wiki.
 
 ### Install Gulp, Yeoman, and the template
-```sh
+```bash
 npm i -g gulp yo generator-appx
 ```
 
 ### Scaffold out the project
-```sh
+```bash
 yo appx
 ```
 To easily speed this process up significantly check out the [Tips](https://github.com/MicrosoftEdge/generator-appx/wiki/Tips/#modules) section in the sidebar.
 
 ### Run Gulp
-```
+```bash
 gulp
+```
+If you would like to also deploy a Windows 10 app, run:
+```bash
+gulp appx:dev
 ```
 
 ### Screencast
