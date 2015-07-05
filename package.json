@@ -5,6 +5,9 @@
   "files": [
     "generators"
   ],
+  "scripts": {
+    "test": "mocha"
+  },
   "keywords": [
     "yeoman-generator"
   ],
@@ -15,5 +18,8 @@
   "dependencies": {
     "gulp-appx": "git://github.com/MicrosoftEdge/gulp-appx",
     "yeoman-generator": "^0.20.1"
+  },
+  "devDependencies": {
+    "mocha": "*"
   }
 }
