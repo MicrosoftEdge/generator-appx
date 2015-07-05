@@ -22,28 +22,6 @@ module.exports = generators.Base.extend({
     });
   },
 
-  promptProjectInfo: function() {
-    var that = this;
-    var done = this.async();
-
-    this.prompt([{
-      type: 'input',
-      name: 'name',
-      message: 'Project name?',
-      default: 'Contoso App'
-    }, {
-      type: 'input',
-      name: 'author',
-      message: 'Author name?',
-      store: true,
-      default: ''
-    }], function (answers) {
-      that._name = answers.name;
-      that._author = answers.author;
-      done();
-    });
-  },
-
   copyTemplate: function() {
     var gulpDir = path.join(require.resolve('gulp-appx/package.json'), '../');
     if (this._win10) {
