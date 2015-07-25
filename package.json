@@ -20,6 +20,7 @@
     "yeoman-generator": "^0.20.1"
   },
   "devDependencies": {
+    "del": "^1.2.0",
     "mocha": "*"
   }
 }
