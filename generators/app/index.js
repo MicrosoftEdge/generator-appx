@@ -22,6 +22,28 @@ module.exports = generators.Base.extend({
     });
   },
 
+  promptProjectInfo: function() {
+    var that = this;
+    var done = this.async();
+
+    this.prompt([{
+      type: 'input',
+      name: 'name',
+      message: 'Project name?',
+      default: 'demo-app'
+    }, {
+      type: 'input',
+      name: 'author',
+      message: 'Author name?',
+      store: true,
+      default: ''
+    }], function (answers) {
+      that._name = answers.name;
+      that._author = answers.author;
+      done();
+    });
+  },
+
   copyTemplate: function() {
     var gulpDir = path.join(require.resolve('appx-starter/package.json'), '../');
     if (this._win10) {
@@ -30,6 +52,18 @@ module.exports = generators.Base.extend({
       this.fs.copy(this.templatePath(gulpDir) + '/{,*,.*,gulpfile.js/*,gulpfile.js/tasks/**/*,gulpfile.js/util/**/*,src/**/*,src/**/.*}', this.destinationPath() + '/', {dot: true});
     }
     this.fs.move(this.destinationPath('.npmignore'), this.destinationPath('.gitignore'));
+
+    var jsonContent = this.fs.readJSON(this.destinationPath('package.json'));
+    ['gitHead', 'readme', 'readmeFilename', '_id', '_shasum', '_from', '_resolved'].forEach(function(entry) {
+      if (jsonContent[entry]) {
+        delete jsonContent[entry];
+      }
+    });
+    var projectName = this._name.toLowerCase().replace(/ /g, '-');
+    jsonContent.name = projectName;
+    jsonContent.author - this._author;
+    this.fs.writeJSON(this.destinationPath('package.json'), jsonContent);
+
   },
 
   install: function() {
