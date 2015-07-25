@@ -1,4 +1,7 @@
 # AppX Generator
+
+[![Build Status](https://travis-ci.org/WebAppsAndFrameworks/generator-appx-staging.svg?branch=master)](https://travis-ci.org/WebAppsAndFrameworks/generator-appx-staging)
+
 A [Yeoman](http://yeoman.io) generator for building websites and Hosted Apps for Windows 10.
 
 ![yoappx](http://microsoftedge.github.io/generator-appx/img/yoappx.gif)
