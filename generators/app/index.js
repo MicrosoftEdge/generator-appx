@@ -59,11 +59,23 @@ module.exports = generators.Base.extend({
         delete jsonContent[entry];
       }
     });
-    var projectName = this._name.toLowerCase().replace(/ /g, '-');
+    var projectName = this._name.trim().toLowerCase().replace(/ /g, '-');
     jsonContent.name = projectName;
-    jsonContent.author - this._author;
+    jsonContent.author = this._author.trim();
     this.fs.writeJSON(this.destinationPath('package.json'), jsonContent);
 
+    var manifestContent = this.fs.read(this.destinationPath('src/AppxManifest.xml'));
+    var cnString = 'Publisher="CN=' + this._author.trim() + '" />';
+    var pubString = '<PublisherDisplayName>' + this._author.trim() + '</PublisherDisplayName>';
+    var vDisplayName = 'DisplayName="' + this._name.trim() + '"';
+    var displayName = '<DisplayName>' + this._name.trim() + '</DisplayName>';
+
+    manifestContent = manifestContent.replace(/Publisher="CN=[\S\s]+?" \/>/, cnString)
+      .replace(/<PublisherDisplayName>[\S\s]+?<\/PublisherDisplayName>/, pubString)
+      .replace(/DisplayName="[\S\s]+?"/, vDisplayName)
+      .replace(/<DisplayName>[\S\s]+?<\/DisplayName>/, displayName);
+
+    this.fs.write(this.destinationPath('src/AppxManifest.xml'), manifestContent);
   },
 
   install: function() {
