@@ -43,7 +43,18 @@ describe('params', function() {
     assert.fileContent('package.json', '"name": "upper-case-with-spaces"');
   });
 
+  it('should update the author name in package.json', function() {
+    assert.fileContent('package.json', '"author": "Author Name"');
+  });
+
   it('should update the name in AppxManifest.xml', function() {
+    assert.fileContent('src/AppxManifest.xml', '<DisplayName>UPPER CASE WITH SPACES</DisplayName>');
+    assert.fileContent('src/AppxManifest.xml', 'DisplayName="UPPER CASE WITH SPACES"');
+  });
+
+  it('should update the author name in Appxmanifest.xml', function() {
+    assert.fileContent('src/AppxManifest.xml', '<PublisherDisplayName>Author Name</PublisherDisplayName>');
+    assert.fileContent('src/AppxManifest.xml', 'Publisher="CN=Author Name"');
   });
 
 });
