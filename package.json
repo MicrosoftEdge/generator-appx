@@ -8,6 +8,7 @@
   "scripts": {
     "test": "mocha",
     "start": "./node_modules/.bin/babel ./src --out-dir ./app && node ./app/index.js",
+    "build": "./node_modules/.bin/babel ./src --out-dir ./app",
     "watch": "./node_modules/.bin/babel ./src --out-dir ./app --watch --source-maps",
     "lint": "./node_modules/.bin/eslint ./src",
     "debug": "./node_modules/.bin/babel ./src --out-dir ./app && node-debug ./app/index.js"
