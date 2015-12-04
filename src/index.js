@@ -72,12 +72,11 @@ module.exports = Base.extend({
     this.fs.writeJSON(this.destinationPath('package.json'), jsonContent);
 
     let manifestContent = this.fs.read(this.destinationPath('src/AppxManifest.xml'));
-    const cnString = 'Publisher="CN=' + this._author.trim() + '" />';
     const pubString = '<PublisherDisplayName>' + this._author.trim() + '</PublisherDisplayName>';
     const vDisplayName = 'DisplayName="' + this._name.trim() + '"';
     const displayName = '<DisplayName>' + this._name.trim() + '</DisplayName>';
 
-    manifestContent = manifestContent.replace(/Publisher="CN=[\S\s]+?" \/>/, cnString)
+    manifestContent = manifestContent.replace(/(\bPublisher="CN=)([^"])*(?=")/, '$1' + this._author.trim())
       .replace(/<PublisherDisplayName>[\S\s]+?<\/PublisherDisplayName>/, pubString)
       .replace(/DisplayName="[\S\s]+?"/, vDisplayName)
       .replace(/<DisplayName>[\S\s]+?<\/DisplayName>/, displayName);

@@ -7,7 +7,7 @@ var del = require('del');
 
 describe('gulp', function() {
   before(function (done) {
-    helpers.run(path.join(__dirname, '../generators/app'))
+    helpers.run(path.join(__dirname, '../app'))
       .inDir(path.join(__dirname, './tmp'))
       .withPrompts({win10: true, deps: false})
       .on('end', done);
@@ -22,7 +22,7 @@ describe('gulp', function() {
       'default',
       'appx:dev'
     ].forEach(function (task) {
-      assert.fileContent('gulpfile.js/index.js',
+      assert.fileContent('gulpfile.babel.js/index.js',
                          'gulp.task(\'' + task);
     });
   });
@@ -30,7 +30,7 @@ describe('gulp', function() {
 
 describe('params', function() {
   before(function(done) {
-    helpers.run(path.join(__dirname, '../generators/app'))
+    helpers.run(path.join(__dirname, '../app'))
       .inDir(path.join(__dirname, './tmp'))
       .withPrompts({win10: false, deps: false, name: 'UPPER CASE WITH SPACES', author: 'Author Name'})
       .on('end', done);
