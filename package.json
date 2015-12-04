@@ -3,10 +3,14 @@
   "version": "0.1.0",
   "description": "Windows 10 App Build System",
   "files": [
-    "generators"
+    "app"
   ],
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "start": "./node_modules/.bin/babel ./src --out-dir ./app && node ./app/index.js",
+    "watch": "./node_modules/.bin/babel ./src --out-dir ./app --watch --source-maps",
+    "lint": "./node_modules/.bin/eslint ./src",
+    "debug": "./node_modules/.bin/babel ./src --out-dir ./app && node-debug ./app/index.js"
   },
   "keywords": [
     "yeoman-generator"
@@ -21,6 +25,10 @@
   },
   "devDependencies": {
     "del": "^1.2.0",
-    "mocha": "*"
+    "mocha": "*",
+    "babel-cli": "^6.1.18",
+    "babel-preset-es2015": "^6.1.18",
+    "eslint": "^1.9.0",
+    "eslint-config-airbnb": "^1.0.0"
   }
 }
