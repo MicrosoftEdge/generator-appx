@@ -9,3 +9,5 @@ node_modules
 *.swn
 tmp/
 generators
+typings
+app

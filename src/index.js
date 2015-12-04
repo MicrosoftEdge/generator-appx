@@ -1,9 +1,10 @@
-var generators = require('yeoman-generator');
-var path = require('path');
-module.exports = generators.Base.extend({
-  promptProjectType: function() {
-    var that = this;
-    var done = this.async();
+import {Base} from 'yeoman-generator';
+import * as path from 'path';
+
+module.exports = Base.extend({
+  promptProjectType() {
+    const that = this;
+    const done = this.async();
 
     this.prompt([{
       type: 'confirm',
@@ -11,20 +12,20 @@ module.exports = generators.Base.extend({
       message: 'Developing on Windows 10?',
       default: true
     }, {
-      type: 'confirm',
-      name: 'deps',
-      message: 'Automatically install dependencies?',
-      default: true
-    }], function (answers) {
-      that._win10 = answers.win10;
-      that._deps = answers.deps;
-      done();
-    });
+        type: 'confirm',
+        name: 'deps',
+        message: 'Automatically install dependencies?',
+        default: true
+      }], answers => {
+        that._win10 = answers.win10;
+        that._deps = answers.deps;
+        done();
+      });
   },
 
-  promptProjectInfo: function() {
-    var that = this;
-    var done = this.async();
+  promptProjectInfo() {
+    const that = this;
+    const done = this.async();
 
     this.prompt([{
       type: 'input',
@@ -32,43 +33,48 @@ module.exports = generators.Base.extend({
       message: 'Project name?',
       default: 'demo-app'
     }, {
-      type: 'input',
-      name: 'author',
-      message: 'Author name?',
-      store: true,
-      default: ''
-    }], function (answers) {
-      that._name = answers.name;
-      that._author = answers.author;
-      done();
-    });
+        type: 'input',
+        name: 'author',
+        message: 'Author name?',
+        store: true,
+        default: ''
+      }], answers => {
+        that._name = answers.name;
+        that._author = answers.author;
+        done();
+      });
   },
 
-  copyTemplate: function() {
-    var gulpDir = path.join(require.resolve('appx-starter/package.json'), '../');
-    if (this._win10) {
-      this.fs.copy(this.templatePath(gulpDir) + '/**/{*,.*}', this.destinationPath(), {dot: true});
-    } else {
-      this.fs.copy(this.templatePath(gulpDir) + '/{,*,.*,gulpfile.js/*,gulpfile.js/tasks/**/*,gulpfile.js/util/**/*,src/**/*,src/**/.*}', this.destinationPath() + '/', {dot: true});
-    }
+  copyTemplate() {
+    const gulpDir = path.join(require.resolve('appx-starter/package.json'), '../');
+    this.fs.copy(this.templatePath(gulpDir) + '/**/{*,.*}', this.destinationPath(), { dot: true });
+
     this.fs.move(this.destinationPath('.npmignore'), this.destinationPath('.gitignore'));
 
-    var jsonContent = this.fs.readJSON(this.destinationPath('package.json'));
-    ['gitHead', 'readme', 'readmeFilename', '_id', '_shasum', '_from', '_resolved'].forEach(function(entry) {
-      if (jsonContent[entry]) {
-        delete jsonContent[entry];
-      }
+    const jsonContent = this.fs.readJSON(this.destinationPath('package.json'));
+    const unusedFields = [
+      'gitHead',
+      'readme',
+      'readmeFilename',
+      ...Object.keys(jsonContent).filter(field => field.charAt(0) === '_')
+    ];
+    unusedFields.forEach(entry => {
+      jsonContent[entry] = 'x';
+      delete jsonContent[entry];
     });
-    var projectName = this._name.trim().toLowerCase().replace(/ /g, '-');
+    if (!this._win10) {
+      delete jsonContent.devDependencies.hwa;
+    }
+    const projectName = this._name.trim().toLowerCase().replace(/ /g, '-');
     jsonContent.name = projectName;
     jsonContent.author = this._author.trim();
     this.fs.writeJSON(this.destinationPath('package.json'), jsonContent);
 
-    var manifestContent = this.fs.read(this.destinationPath('src/AppxManifest.xml'));
-    var cnString = 'Publisher="CN=' + this._author.trim() + '" />';
-    var pubString = '<PublisherDisplayName>' + this._author.trim() + '</PublisherDisplayName>';
-    var vDisplayName = 'DisplayName="' + this._name.trim() + '"';
-    var displayName = '<DisplayName>' + this._name.trim() + '</DisplayName>';
+    let manifestContent = this.fs.read(this.destinationPath('src/AppxManifest.xml'));
+    const cnString = 'Publisher="CN=' + this._author.trim() + '" />';
+    const pubString = '<PublisherDisplayName>' + this._author.trim() + '</PublisherDisplayName>';
+    const vDisplayName = 'DisplayName="' + this._name.trim() + '"';
+    const displayName = '<DisplayName>' + this._name.trim() + '</DisplayName>';
 
     manifestContent = manifestContent.replace(/Publisher="CN=[\S\s]+?" \/>/, cnString)
       .replace(/<PublisherDisplayName>[\S\s]+?<\/PublisherDisplayName>/, pubString)
@@ -78,9 +84,9 @@ module.exports = generators.Base.extend({
     this.fs.write(this.destinationPath('src/AppxManifest.xml'), manifestContent);
   },
 
-  install: function() {
+  install() {
     if (this._deps) {
-      this.installDependencies({bower: false});
+      this.installDependencies({ bower: false });
     }
   }
 });
