@@ -52,6 +52,7 @@ module.exports = Base.extend({
     this.fs.move(this.destinationPath('.npmignore'), this.destinationPath('.gitignore'));
 
     const jsonContent = this.fs.readJSON(this.destinationPath('package.json'));
+    jsonContent.version = '0.0.1';
     const unusedFields = [
       'gitHead',
       'readme',
