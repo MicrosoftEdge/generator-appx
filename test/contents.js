@@ -28,7 +28,7 @@ describe('gulp', function() {
   });
 });
 
-describe('no-input', function() {
+describe('default input', function() {
   before(function (done) {
     helpers.run(path.join(__dirname, '../app'))
       .inDir(path.join(__dirname, './tmp'))
@@ -38,10 +38,10 @@ describe('no-input', function() {
   after(function (done) {
     del(path.join(__dirname, './tmp'), {force: true}, done);
   });
-  
-  it('should use Unknown for name in AppxManifest.xml', function() {
-    assert.fileContent('src/AppxManifest.xml', '<DisplayName>Unknown</DisplayName>');
-    assert.fileContent('src/AppxManifest.xml', 'DisplayName="Unknown"');
+
+  it('should use demo-app for name in AppxManifest.xml', function() {
+    assert.fileContent('src/AppxManifest.xml', '<DisplayName>demo-app</DisplayName>');
+    assert.fileContent('src/AppxManifest.xml', 'DisplayName="demo-app"');
   });
 
   it('should use Uknown for author name in Appxmanifest.xml', function() {

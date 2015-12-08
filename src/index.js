@@ -66,14 +66,14 @@ module.exports = Base.extend({
 
     let manifestContent = this.fs.read(this.destinationPath('src/AppxManifest.xml'));
 
-    const author = this._author.trim() ? this._author.trim() : 'Unknown';
-    const name = this._name.trim() ? this._name.trim() : 'Unknown';
+    const manifestAuthor = this._author ? this._author.trim() : 'Unknown';
+    const manifestName = this._name ? this._name.trim() : 'Unknown';
 
-    const pubString = `<PublisherDisplayName>${author}</PublisherDisplayName>`;
-    const vDisplayName = `DisplayName="${name}"`;
-    const displayName = `<DisplayName>${name}</DisplayName>`;
+    const pubString = `<PublisherDisplayName>${manifestAuthor}</PublisherDisplayName>`;
+    const vDisplayName = `DisplayName="${manifestName}"`;
+    const displayName = `<DisplayName>${manifestName}</DisplayName>`;
 
-    manifestContent = manifestContent.replace(/(\bPublisher="CN=)([^"])*(?=")/, '$1' + this._author.trim())
+    manifestContent = manifestContent.replace(/(\bPublisher="CN=)([^"])*(?=")/, '$1' + manifestAuthor)
       .replace(/<PublisherDisplayName>[\S\s]+?<\/PublisherDisplayName>/, pubString)
       .replace(/DisplayName="[\S\s]+?"/, vDisplayName)
       .replace(/<DisplayName>[\S\s]+?<\/DisplayName>/, displayName);
