@@ -7,11 +7,6 @@ module.exports = Base.extend({
     const done = this.async();
 
     this.prompt([{
-      type: 'confirm',
-      name: 'win10',
-      message: 'Developing on Windows 10?',
-      default: true
-    }, {
         type: 'confirm',
         name: 'deps',
         message: 'Automatically install dependencies?',
@@ -63,18 +58,20 @@ module.exports = Base.extend({
       jsonContent[entry] = 'x';
       delete jsonContent[entry];
     });
-    if (!this._win10) {
-      delete jsonContent.devDependencies.hwa;
-    }
+
     const projectName = this._name.trim().toLowerCase().replace(/ /g, '-');
     jsonContent.name = projectName;
     jsonContent.author = this._author.trim();
     this.fs.writeJSON(this.destinationPath('package.json'), jsonContent);
 
     let manifestContent = this.fs.read(this.destinationPath('src/AppxManifest.xml'));
-    const pubString = '<PublisherDisplayName>' + this._author.trim() + '</PublisherDisplayName>';
-    const vDisplayName = 'DisplayName="' + this._name.trim() + '"';
-    const displayName = '<DisplayName>' + this._name.trim() + '</DisplayName>';
+
+    const author = this._author.trim() ? this._author.trim() : 'Unknown';
+    const name = this._name.trim() ? this._name.trim() : 'Unknown';
+
+    const pubString = `<PublisherDisplayName>${author}</PublisherDisplayName>`;
+    const vDisplayName = `DisplayName="${name}"`;
+    const displayName = `<DisplayName>${name}</DisplayName>`;
 
     manifestContent = manifestContent.replace(/(\bPublisher="CN=)([^"])*(?=")/, '$1' + this._author.trim())
       .replace(/<PublisherDisplayName>[\S\s]+?<\/PublisherDisplayName>/, pubString)

@@ -9,7 +9,7 @@ describe('gulp', function() {
   before(function (done) {
     helpers.run(path.join(__dirname, '../app'))
       .inDir(path.join(__dirname, './tmp'))
-      .withPrompts({win10: true, deps: false})
+      .withPrompts({deps: false})
       .on('end', done);
   });
   after(function (done) {
@@ -28,11 +28,34 @@ describe('gulp', function() {
   });
 });
 
+describe('no-input', function() {
+  before(function (done) {
+    helpers.run(path.join(__dirname, '../app'))
+      .inDir(path.join(__dirname, './tmp'))
+      .withPrompts({deps: false})
+      .on('end', done);
+  });
+  after(function (done) {
+    del(path.join(__dirname, './tmp'), {force: true}, done);
+  });
+  
+  it('should use Unknown for name in AppxManifest.xml', function() {
+    assert.fileContent('src/AppxManifest.xml', '<DisplayName>Unknown</DisplayName>');
+    assert.fileContent('src/AppxManifest.xml', 'DisplayName="Unknown"');
+  });
+
+  it('should use Uknown for author name in Appxmanifest.xml', function() {
+    assert.fileContent('src/AppxManifest.xml', '<PublisherDisplayName>Unknown</PublisherDisplayName>');
+    assert.fileContent('src/AppxManifest.xml', 'Publisher="CN=Unknown"');
+  });
+
+});
+
 describe('params', function() {
   before(function(done) {
     helpers.run(path.join(__dirname, '../app'))
       .inDir(path.join(__dirname, './tmp'))
-      .withPrompts({win10: false, deps: false, name: 'UPPER CASE WITH SPACES', author: 'Author Name'})
+      .withPrompts({deps: false, name: 'UPPER CASE WITH SPACES', author: 'Author Name'})
       .on('end', done);
   });
   after(function(done) {
