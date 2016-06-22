@@ -34,3 +34,6 @@ gulp appx:dev
 
 ### Screencast
 [![asciicast](https://asciinema.org/a/5ucpi22l0zcro1o2j5qn989c6.png)](https://asciinema.org/a/5ucpi22l0zcro1o2j5qn989c6)
+
+## Code of Conduct
+This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
