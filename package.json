@@ -18,10 +18,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/MicrosoftEdge/generator-appx.git"
+    "url": "https://github.com/MicrosoftEdge/generator-appx.git"
   },
   "dependencies": {
-    "appx-starter": "git://github.com/MicrosoftEdge/appx-starter",
+    "appx-starter": "https://github.com/MicrosoftEdge/appx-starter",
     "yeoman-generator": "^0.20.1"
   },
   "devDependencies": {
